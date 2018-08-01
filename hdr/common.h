@@ -23,7 +23,8 @@
 using namespace std;
 
 #define P pair<string, string>
-map<string, string> dict;
+extern string tab;
+extern map<string, string> dict;
 
 int find(string src, string s);
 string size(string arrayname);
