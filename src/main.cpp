@@ -1,26 +1,6 @@
-#include <iostream>
-#include <cstdio>
-#include <cmath>
-#include <vector>
-#include <list>
-#include <set>
-#include <map>
-#include <stack>
-#include <queue>
-#include <string>
-#include <cstring>
-#include <utility>
-#include <algorithm>
-#include <functional>
-#include <deque>
-#include <cctype>
-#include <ctime>
-#include <cstdlib>
-#include <iomanip>
-using namespace std;
-
 #include "../hdr/common.h"
 #include "../hdr/convert.h"
+#include "../hdr/prototype.h"
 const int MAX = 200;
 
 int main(){
@@ -39,6 +19,9 @@ int main(){
    fclose(fpr);
    fclose(fpw);
 
-   system("g++ code/converted_code.cpp");
-   system(".\\a.exe");
+   int res = system("g++ code/converted_code.cpp");
+   if (res==0){
+      cout << "Completed!" << endl;
+      system(".\\a.exe");
+   }
 }
