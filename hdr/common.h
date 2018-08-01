@@ -22,4 +22,10 @@
 #include <iomanip>
 using namespace std;
 
+#define P pair<string, string>
+map<string, string> dict;
+
+int find(string src, string s);
+string size(string arrayname);
+
 #endif
