@@ -1,4 +1,4 @@
-# K++ (original language for competitive programming)
+# K++ (Original Language for Competitive Programming)
 
 **Purpose**  
   *To accelerate cording process  
