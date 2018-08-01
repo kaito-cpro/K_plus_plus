@@ -1,5 +1,4 @@
-# K++
-# original language for competitive programming
+# K++ (original language for competitive programming)
 
 **Purpose**  
   *To accelerate cording process  
@@ -9,8 +8,7 @@
 **How to use**  
   *Cording in the file "source_code.cpp" in K++ language  
   *Setting in motion this program in this way  
-    -> $ make  
-       $ ./exe/out  
+      ->   $ make   $ ./exe/out  
   *K++ cord will converted into C++ cord in the file "converted_code.cpp"  
   
 **Regulations and Developings**  
