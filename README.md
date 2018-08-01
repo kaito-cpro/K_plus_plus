@@ -1,5 +1,5 @@
 # K++
-original language for competitive programming
+# original language for competitive programming
 
 <Purpose>
   *To accelerate cording process
