@@ -2,6 +2,8 @@
 #include "../hdr/convert.h"
 #include "../hdr/prototype.h"
 const int MAX = 200;
+string tab = "    ";
+map<string, string> dict;
 
 int main(){
    FILE* fpr;  //read
@@ -18,7 +20,7 @@ int main(){
 
    fclose(fpr);
    fclose(fpw);
-
+cout << "now compiling..." << endl;
    int res = system("g++ code/converted_code.cpp");
    if (res==0){
       cout << "Completed!" << endl;
