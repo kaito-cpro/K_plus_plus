@@ -1,12 +1,12 @@
 # K++
 # original language for competitive programming
 
-<Purpose>
+(Purpose)
   *To accelerate cording process
   *To shorten the time for thinking
   *To reduce bugs
  
-<How to use>
+(How to use)
   *Cording in the file "source_code.cpp" in K++ language
   *Setting in motion this program in this way
     -> $ cd K++
@@ -14,7 +14,7 @@
        $ ./exe/out
   *K++ cord will converted into C++ cord in the file "converted_code.cpp"
   
-<Regulations and Developings>
+(Regulations and Developings)
   *予約語
   *int省略
   *変換拒否表示
