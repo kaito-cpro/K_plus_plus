@@ -3,7 +3,7 @@
 void convert(string& src){
    in_(src);
    out_(src);
-   rep_(src);
+   for_(src);
    indent_(src);
    include_(src);
 }
