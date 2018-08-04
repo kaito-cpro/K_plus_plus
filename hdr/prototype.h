@@ -7,5 +7,6 @@ void indent_(string& src);
 void in_(string& src);
 void out_(string& src);
 void for_(string& src);
+void remove_at_(string& src);
 
 #endif
