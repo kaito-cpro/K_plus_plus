@@ -6,6 +6,6 @@ void include_(string& src);
 void indent_(string& src);
 void in_(string& src);
 void out_(string& src);
-void rep_(string& src);
+void for_(string& src);
 
 #endif
