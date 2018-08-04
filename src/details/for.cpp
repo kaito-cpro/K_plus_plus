@@ -34,8 +34,8 @@ void for_(string& src){
             else var += src[i];
             ++i;
          }
-         if (arr=="") src = src.substr(0, idx) + "for (int " + var + " = 1; " + var +" <= " + ran + "; ++" + var + ")" + src.substr(i);
-         else src = src.substr(0, idx) + "for (int " + var + " = 1; " + var +" <= " + size(arr) + "; ++" + var + ")" + src.substr(i);
+         if (arr=="") src = src.substr(0, idx) + "@for (int " + var + " = 1; " + var +" <= " + ran + "; ++" + var + ")" + src.substr(i);
+         else src = src.substr(0, idx) + "@for (int " + var + " = 1; " + var +" <= " + size(arr) + "; ++" + var + ")" + src.substr(i);
       }
    }
 }
