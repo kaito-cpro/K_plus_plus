@@ -1,6 +1,6 @@
 #include "../../hdr/prototype.h"
 
-void rep_(string& src){
+void for_(string& src){
    int idx;
    while (1){
       if ((idx=find(src, "for"))<0) break;
