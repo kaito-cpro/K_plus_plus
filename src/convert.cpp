@@ -6,4 +6,5 @@ void convert(string& src){
    for_(src);
    indent_(src);
    include_(src);
+   remove_at_(src);
 }
