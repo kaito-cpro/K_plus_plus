@@ -121,7 +121,7 @@ void in_(string& src){
                         }
                         dict[v[i_e].second] = typ.substr(typ.find("[")+1, typ.find("]")-typ.find("[")-1);
                         src += ";\n";
-                        src += "for (int i = 1; i <= " + k + "; ++i) cin";
+                        src += "@for (int i = 1; i <= " + k + "; ++i) cin";
                         for (int j = i_s; j <= i_e; ++j){
                            src += " >> " + v[j].second + "[i]";
                         }
@@ -139,8 +139,8 @@ void in_(string& src){
                         }
                         dict[v[i_e].second] = typ.substr(typ.find("[")+1, typ.find("]")-typ.find("[")-1) + ", " + typ.substr(typ.rfind("[")+1, typ.rfind("]")-typ.rfind("[")-1);
                         src += ";\n";
-                        src += "for (int i = 1; i <= " + n + "; ++i){\n";
-                        src += tab + "for (int j = 1; j <= " + m + "; ++j){\n" + tab + tab + "cin";
+                        src += "@for (int i = 1; i <= " + n + "; ++i){\n";
+                        src += tab + "@for (int j = 1; j <= " + m + "; ++j){\n" + tab + tab + "cin";
                         for (int j = i_s; j <= i_e; ++j){
                            src += " >> " + v[j].second + "[i][j]";
                         }
