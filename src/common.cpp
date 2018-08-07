@@ -1,13 +1,33 @@
 #include "../hdr/common.h"
 
 int find(string src, string s){
-   int res = -1;
-   if (src.find(' '+s)!=string::npos) res = 1 + src.find(' '+s);
-   if (src.find('\n'+s)!=string::npos) res = 1 + src.find('\n'+s);
-   if (src.find(s)==0) res = 0;
-   return res;
-}
+    while (1){
+        int idx, start = 0;
+        bool flg = false;
 
-string size(string arrayname){
-   return dict[arrayname];
+        if ((idx=(src.substr(start)).find(' '+s))!=string::npos) flg = true;
+        else if ((idx=(src.substr(start)).find('\n'+s))!=string::npos) flg = true;
+        else if ((idx=(src.substr(start)).find('('+s))!=string::npos) flg = true;
+        else if ((idx=(src.substr(start)).find('{'+s))!=string::npos) flg = true;
+        else if ((idx=(src.substr(start)).find('<'+s))!=string::npos) flg = true;
+        else if ((idx=(src.substr(start)).find('&'+s))!=string::npos) flg = true;
+        else if ((idx=(src.substr(start)).find('|'+s))!=string::npos) flg = true;
+        else if ((idx=(src.substr(start)).find('='+s))!=string::npos) flg = true;
+        else if ((idx=(src.substr(start)).find('+'+s))!=string::npos) flg = true;
+        else if ((idx=(src.substr(start)).find('-'+s))!=string::npos) flg = true;
+        else if ((idx=(src.substr(start)).find('*'+s))!=string::npos) flg = true;
+        else if ((idx=(src.substr(start)).find('/'+s))!=string::npos) flg = true;
+        else if ((idx=(src.substr(start)).find('%'+s))!=string::npos) flg = true;
+        else if ((idx=(src.substr(start)).find('!'+s))!=string::npos) flg = true;
+        else if ((idx=(src.substr(start)).find(','+s))!=string::npos) flg = true;
+        else if ((idx=(src.substr(start)).find(';'+s))!=string::npos) flg = true;
+        else if ((idx=(src.substr(start)).find('?'+s))!=string::npos) flg = true;
+        else if (src.find(s)==0) return 0;
+
+        if (flg){
+            if (src[start+idx]!='@') return 1+start+idx;
+            else ++start;
+        }
+        else return -1;
+    }
 }
