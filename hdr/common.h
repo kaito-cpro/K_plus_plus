@@ -24,9 +24,8 @@ using namespace std;
 
 #define P pair<string, string>
 extern string tab;
-extern map<string, string> dict;
+extern map<string, string> dict;  //typeとnameを管理
 
 int find(string src, string s);
-string size(string arrayname);
 
 #endif
