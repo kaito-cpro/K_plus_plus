@@ -12,6 +12,10 @@ void in_(string& src){
          while (flg){
             type = name = key = "";
             while (1){
+                if (src[i]!=' ') break;
+                ++i;
+            }
+            while (1){
                if (src[i]==')'){
                   flg = false;
                   break;
@@ -19,7 +23,6 @@ void in_(string& src){
                else if (src[i]=='['){
                   while (1){
                      if (src[i]==','){
-                        ++i;
                         break;
                      }
                      if (src[i]==')'){
@@ -35,7 +38,6 @@ void in_(string& src){
                   ++i;
                   while (1){
                      if (src[i]==','){
-                        ++i;
                         break;
                      }
                      else if (src[i]==')'){
@@ -45,7 +47,6 @@ void in_(string& src){
                      else if (src[i]=='['){
                         while (1){
                            if (src[i]==','){
-                              ++i;
                               break;
                            }
                            if (src[i]==')'){
@@ -65,7 +66,6 @@ void in_(string& src){
                   break;
                }
                else if (src[i]==','){
-                  ++i;
                   break;
                }
                else {
@@ -84,6 +84,7 @@ void in_(string& src){
             }
             type += key;
             v.push_back(P(type, name));
+            dict[name] = type;
             ++i;
          }
          string strend = src.substr(i);
@@ -100,7 +101,6 @@ void in_(string& src){
                      if (j!=i_s) src += ",";
                      src += " " + v[j].second;
                   }
-                  dict[v[i_e].second] = "no size";
                   src += ";\ncin";
                   for (int j = i_s; j <= i_e; ++j){
                      src += " >> " + v[j].second;
@@ -117,13 +117,12 @@ void in_(string& src){
                         string k = typ.substr(typ.find("[")+1, typ.find("]")-typ.find("[")-1);
                         for (int j = i_s; j <= i_e; ++j){
                            if (j!=i_s) src += ",";
-                           src += " " + v[j].second + "[" + k + "+1]";
+                           src += " " + v[j].second + "[$" + k + "]";
                         }
-                        dict[v[i_e].second] = typ.substr(typ.find("[")+1, typ.find("]")-typ.find("[")-1);
                         src += ";\n";
-                        src += "@for (int i = 1; i <= " + k + "; ++i) cin";
+                        src += "@for (int i = 0; i < " + k + "; ++i) cin";
                         for (int j = i_s; j <= i_e; ++j){
-                           src += " >> " + v[j].second + "[i]";
+                           src += " >> " + v[j].second + "[$i]";
                         }
                         src += ";\n";
                         i_s =  i;  i_e = i;
@@ -135,14 +134,13 @@ void in_(string& src){
                         string m = typ.substr(typ.rfind("[")+1, typ.rfind("]")-typ.rfind("[")-1);
                         for (int j = i_s; j <= i_e; ++j){
                            if (j!=i_s) src += ",";
-                           src += " " + v[j].second + "[" + n + "+1]" + "[" + m + "+1]";
+                           src += " " + v[j].second + "[$" + n + "]" + "[$" + m + "]";
                         }
-                        dict[v[i_e].second] = typ.substr(typ.find("[")+1, typ.find("]")-typ.find("[")-1) + ", " + typ.substr(typ.rfind("[")+1, typ.rfind("]")-typ.rfind("[")-1);
                         src += ";\n";
-                        src += "@for (int i = 1; i <= " + n + "; ++i){\n";
-                        src += tab + "@for (int j = 1; j <= " + m + "; ++j){\n" + tab + tab + "cin";
+                        src += "@for (int i = 0; i < " + n + "; ++i){\n";
+                        src += tab + "@for (int j = 0; j < " + m + "; ++j){\n" + tab + tab + "cin";
                         for (int j = i_s; j <= i_e; ++j){
-                           src += " >> " + v[j].second + "[i][j]";
+                           src += " >> " + v[j].second + "[$i][$j]";
                         }
                         src += ";\n" + tab + "}\n}\n";
                         i_s =  i;  i_e = i;
