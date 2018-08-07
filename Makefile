@@ -1,5 +1,5 @@
-out: obj/main.o obj/convert.o obj/common.o obj/in.o obj/out.o obj/for.o obj/include.o obj/indent.o obj/remove_at.o
-	g++ -o exe/out obj/main.o obj/convert.o obj/common.o obj/in.o obj/out.o obj/for.o obj/include.o obj/indent.o obj/remove_at.o
+out: obj/main.o obj/convert.o obj/common.o obj/in.o obj/out.o obj/for.o obj/kstr.o obj/original_format.o obj/include.o obj/indent.o obj/shift_index.o obj/remove_mark.o
+	g++ -o exe/out obj/main.o obj/convert.o obj/common.o obj/in.o obj/out.o obj/for.o obj/kstr.o obj/original_format.o obj/include.o obj/indent.o obj/shift_index.o obj/remove_mark.o
 
 obj/main.o: src/main.cpp
 	g++ -c src/main.cpp -I hdr -o obj/main.o
@@ -19,14 +19,23 @@ obj/out.o: src/details/out.cpp
 obj/for.o: src/details/for.cpp
 	g++ -c src/details/for.cpp -I hdr -o obj/for.o
 
+obj/kstr.o: src/details/kstr.cpp
+	g++ -c src/details/kstr.cpp -I hdr -o obj/kstr.o
+
+obj/original_format.o: src/details/original_format.cpp
+	g++ -c src/details/original_format.cpp -I hdr -o obj/original_format.o
+
 obj/include.o: src/details/include.cpp
 	g++ -c src/details/include.cpp -I hdr -o obj/include.o
 
 obj/indent.o: src/details/indent.cpp
 	g++ -c src/details/indent.cpp -I hdr -o obj/indent.o
 
-obj/remove_at.o: src/details/remove_at.cpp
-	g++ -c src/details/remove_at.cpp -I hdr -o obj/remove_at.o
+obj/shift_index.o: src/details/shift_index.cpp
+	g++ -c src/details/shift_index.cpp -I hdr -o obj/shift_index.o
+
+obj/remove_mark.o: src/details/remove_mark.cpp
+	g++ -c src/details/remove_mark.cpp -I hdr -o obj/remove_mark.o
 
 clean:
-	rm -f out obj/main.o obj/convert.o obj/common.o obj/in.o obj/out.o obj/for.o obj/include.o obj/indent.o obj/remove_at.o
+	rm -f out obj/main.o obj/convert.o obj/common.o obj/in.o obj/out.o obj/for.o obj/kstr.o obj/original_format.o obj/include.o obj/indent.o obj/shift_index.o obj/remove_mark.o
