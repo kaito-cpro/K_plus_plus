@@ -7,6 +7,9 @@ void indent_(string& src);
 void in_(string& src);
 void out_(string& src);
 void for_(string& src);
-void remove_at_(string& src);
+void kstr_(string& src);
+void original_format_(string& src);
+void shift_index_(string& src);
+void remove_mark_(string& src);
 
 #endif
