@@ -1,10 +1,13 @@
 #include "../hdr/convert.h"
 
 void convert(string& src){
-   in_(src);
-   out_(src);
-   for_(src);
-   indent_(src);
-   include_(src);
-   remove_at_(src);
+    in_(src);
+    out_(src);
+    for_(src);
+    kstr_(src);
+    original_format_(src);
+    indent_(src);
+    include_(src);
+    shift_index_(src);
+    remove_mark_(src);
 }
