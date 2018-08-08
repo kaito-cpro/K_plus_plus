@@ -17,17 +17,50 @@ void out_(string& src){
    while (1){
       if ((idx=find(src, "out("))<0) break;
       else {
-         int cntk = 1;
+         int cntk = 0;
          int i = idx+4;
-         while (1){
-            if (src[i]=='(') ++cntk;
+         vector<string> vs;
+         string tp;
+         int k = 0;
+         bool flg = true;
+         while (flg){
+            if (src[i]=='('){
+                tp += src[i];
+                ++cntk;
+            }
             else if (src[i]==')'){
                 --cntk;
-                if (cntk==0) break;
+                if (cntk==-1){
+                    flg = false;
+                    vs.push_back(tp);
+                    ++k;
+                    break;
+                }
+                else tp += src[i];
             }
+            else if (src[i]==','){
+                if (cntk==0){
+                    vs.push_back(tp);
+                    ++k;
+                    tp = "";
+                    ++i;
+                    while (1){
+                        if (src[i]!=' ') break;
+                        ++i;
+                    }
+                    --i;
+                }
+                else tp += src[i];
+            }
+            else tp += src[i];
             ++i;
          }
-         src = src.substr(0, idx) + "cout << " + src.substr(idx+4, i-idx-4) + " << endl;" + src.substr(i+1);
+         string ends = src.substr(i+1);
+         src = src.substr(0, idx) + "cout";
+         for (int l = 0; l < k; ++l){
+            src += " << (" + vs[l] + ")";
+         }
+         src += " << endl;" + ends;
       }
    }
 }
