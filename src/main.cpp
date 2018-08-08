@@ -31,7 +31,7 @@ int main(){
             break;
     }
 
-    string src;
+    string src = "\n";
     char c[MAX];
     while(fgets(c, MAX, fpr) != NULL) src += c;
 
