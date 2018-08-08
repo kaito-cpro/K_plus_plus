@@ -22,5 +22,5 @@ void include_(string& src){
          "#include <iomanip>\n"
          "using namespace std;\n\n"
          "int main(){\n"
-         +src+"}";
+         +src.substr(1)+"}";
 }
