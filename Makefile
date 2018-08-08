@@ -1,5 +1,5 @@
-out: obj/main.o obj/convert.o obj/common.o obj/in.o obj/out.o obj/for.o obj/kstr.o obj/original_format.o obj/include.o obj/indent.o obj/shift_index.o obj/remove_mark.o
-	g++ -o exe/out obj/main.o obj/convert.o obj/common.o obj/in.o obj/out.o obj/for.o obj/kstr.o obj/original_format.o obj/include.o obj/indent.o obj/shift_index.o obj/remove_mark.o
+out: obj/main.o obj/convert.o obj/common.o obj/in.o obj/out.o obj/for.o obj/if_else.o obj/kstr.o obj/original_format.o obj/include.o obj/indent.o obj/semicolon.o obj/shift_index.o obj/remove_mark.o
+	g++ -o exe/out obj/main.o obj/convert.o obj/common.o obj/in.o obj/out.o obj/for.o obj/if_else.o obj/kstr.o obj/original_format.o obj/include.o obj/indent.o obj/semicolon.o obj/shift_index.o obj/remove_mark.o
 
 obj/main.o: src/main.cpp
 	g++ -c src/main.cpp -I hdr -o obj/main.o
@@ -19,6 +19,9 @@ obj/out.o: src/details/out.cpp
 obj/for.o: src/details/for.cpp
 	g++ -c src/details/for.cpp -I hdr -o obj/for.o
 
+obj/if_else.o: src/details/if_else.cpp
+	g++ -c src/details/if_else.cpp -I hdr -o obj/if_else.o
+
 obj/kstr.o: src/details/kstr.cpp
 	g++ -c src/details/kstr.cpp -I hdr -o obj/kstr.o
 
@@ -31,6 +34,9 @@ obj/include.o: src/details/include.cpp
 obj/indent.o: src/details/indent.cpp
 	g++ -c src/details/indent.cpp -I hdr -o obj/indent.o
 
+obj/semicolon.o: src/details/semicolon.cpp
+	g++ -c src/details/semicolon.cpp -I hdr -o obj/semicolon.o
+
 obj/shift_index.o: src/details/shift_index.cpp
 	g++ -c src/details/shift_index.cpp -I hdr -o obj/shift_index.o
 
@@ -38,4 +44,4 @@ obj/remove_mark.o: src/details/remove_mark.cpp
 	g++ -c src/details/remove_mark.cpp -I hdr -o obj/remove_mark.o
 
 clean:
-	rm -f out obj/main.o obj/convert.o obj/common.o obj/in.o obj/out.o obj/for.o obj/kstr.o obj/original_format.o obj/include.o obj/indent.o obj/shift_index.o obj/remove_mark.o
+	rm -f out obj/main.o obj/convert.o obj/common.o obj/in.o obj/out.o obj/for.o obj/if_else.o obj/kstr.o obj/original_format.o obj/include.o obj/indent.o obj/semicolon.o obj/shift_index.o obj/remove_mark.o
