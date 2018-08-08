@@ -17,7 +17,7 @@ void out_(string& src){
    while (1){
       if ((idx=find(src, "out("))<0) break;
       else {
-         int cntk = 0;
+         int cntk = 0, cntq = 0;
          int i = idx+4;
          vector<string> vs;
          string tp;
@@ -38,8 +38,12 @@ void out_(string& src){
                 }
                 else tp += src[i];
             }
+            else if (src[i]=='"'){
+                tp += src[i];
+                ++cntq;
+            }
             else if (src[i]==','){
-                if (cntk==0){
+                if (cntk==0 && cntq%2==0){
                     vs.push_back(tp);
                     ++k;
                     tp = "";
