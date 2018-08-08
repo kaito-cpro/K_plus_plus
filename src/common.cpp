@@ -8,7 +8,9 @@ int find(string src, string s){
         if ((idx=(src.substr(start)).find(' '+s))!=string::npos) flg = true;
         else if ((idx=(src.substr(start)).find('\n'+s))!=string::npos) flg = true;
         else if ((idx=(src.substr(start)).find('('+s))!=string::npos) flg = true;
+        else if ((idx=(src.substr(start)).find(')'+s))!=string::npos) flg = true;
         else if ((idx=(src.substr(start)).find('{'+s))!=string::npos) flg = true;
+        else if ((idx=(src.substr(start)).find('}'+s))!=string::npos) flg = true;
         else if ((idx=(src.substr(start)).find('<'+s))!=string::npos) flg = true;
         else if ((idx=(src.substr(start)).find('&'+s))!=string::npos) flg = true;
         else if ((idx=(src.substr(start)).find('|'+s))!=string::npos) flg = true;
