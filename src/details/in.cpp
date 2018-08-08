@@ -117,7 +117,7 @@ void in_(string& src){
                         string k = typ.substr(typ.find("[")+1, typ.find("]")-typ.find("[")-1);
                         for (int j = i_s; j <= i_e; ++j){
                            if (j!=i_s) src += ",";
-                           src += " " + v[j].second + "[" + k + "]";
+                           src += " " + v[j].second + "[$" + k + "]";
                         }
                         src += ";\n";
                         src += "@for(int i = 0; i @< " + k + "; ++i) cin";
@@ -134,7 +134,7 @@ void in_(string& src){
                         string m = typ.substr(typ.rfind("[")+1, typ.rfind("]")-typ.rfind("[")-1);
                         for (int j = i_s; j <= i_e; ++j){
                            if (j!=i_s) src += ",";
-                           src += " " + v[j].second + "[" + n + "]" + "[" + m + "]";
+                           src += " " + v[j].second + "[$" + n + "]" + "[$" + m + "]";
                         }
                         src += ";\n";
                         src += "@for(int i = 0; i @< " + n + "; ++i){\n";
