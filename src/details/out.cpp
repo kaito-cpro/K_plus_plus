@@ -61,10 +61,11 @@ void out_(string& src){
          }
          string ends = src.substr(i+1);
          src = src.substr(0, idx) + "cout";
-         for (int l = 0; l < k; ++l){
+         for (int l = 0; l < k-1; ++l){
             src += " @<@< (" + vs[l] + ")";
          }
-         src += " @<@< endl;" + ends;
+         if (vs[k-1]=="-endl") src += ";" + ends;
+         else src += " @<@< (" + vs[k-1] + ") @<@< endl;" + ends;
       }
    }
 }
