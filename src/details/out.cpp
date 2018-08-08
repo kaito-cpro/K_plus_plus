@@ -5,13 +5,13 @@ void out_(string& src){
    while (1){
       if ((idx=find(src, "yes()"))<0) break;
       else {
-         src = src.substr(0, idx) + "cout << \"Yes\" << endl;" + src.substr(idx+5);
+         src = src.substr(0, idx) + "cout @<@< \"Yes\" @<@< endl;" + src.substr(idx+5);
       }
    }
    while (1){
       if ((idx=find(src, "no()"))<0) break;
       else {
-         src = src.substr(0, idx) + "cout << \"No\" << endl;" + src.substr(idx+4);
+         src = src.substr(0, idx) + "cout @<@< \"No\" @<@< endl;" + src.substr(idx+4);
       }
    }
    while (1){
@@ -62,9 +62,9 @@ void out_(string& src){
          string ends = src.substr(i+1);
          src = src.substr(0, idx) + "cout";
          for (int l = 0; l < k; ++l){
-            src += " << (" + vs[l] + ")";
+            src += " @<@< (" + vs[l] + ")";
          }
-         src += " << endl;" + ends;
+         src += " @<@< endl;" + ends;
       }
    }
 }
