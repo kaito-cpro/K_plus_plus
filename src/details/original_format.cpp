@@ -14,6 +14,10 @@ void c_(string& src){
         if ((idx=find(src, "long"))<0) break;
         else src = src.substr(0, idx) + "@long @long" + src.substr(idx+4);
     }
+    while (1){
+        if ((idx=find(src, "kstr"))<0) break;
+        else src = src.substr(0, idx) + "string" + src.substr(idx+4);
+    }
 }
 
 void math_(string& src){
@@ -28,7 +32,7 @@ void math_(string& src){
             continue;
         }
         if (src[idx+1]=='<'){
-            src = src.substr(0, idx) + "@<@<" + src.substr(idx+2);
+            start = idx+2;
             continue;
         }
         // a <= x <= b
