@@ -120,7 +120,7 @@ void in_(string& src){
                            src += " " + v[j].second + "[$" + k + "]";
                         }
                         src += ";\n";
-                        src += "@for (int i = 0; i < " + k + "; ++i) cin";
+                        src += "@for(int i = 0; i @< " + k + "; ++i) cin";
                         for (int j = i_s; j <= i_e; ++j){
                            src += " >> " + v[j].second + "[$i]";
                         }
@@ -137,8 +137,8 @@ void in_(string& src){
                            src += " " + v[j].second + "[$" + n + "]" + "[$" + m + "]";
                         }
                         src += ";\n";
-                        src += "@for (int i = 0; i < " + n + "; ++i){\n";
-                        src += tab + "@for (int j = 0; j < " + m + "; ++j){\n" + tab + tab + "cin";
+                        src += "@for(int i = 0; i @< " + n + "; ++i){\n";
+                        src += tab + "@for(int j = 0; j @< " + m + "; ++j){\n" + tab + tab + "cin";
                         for (int j = i_s; j <= i_e; ++j){
                            src += " >> " + v[j].second + "[$i][$j]";
                         }
