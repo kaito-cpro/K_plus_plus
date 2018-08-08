@@ -2,6 +2,7 @@
 
 void for_(string& src){
    int idx;
+   int num = 0;
    while (1){
       if ((idx=find(src, "for("))<0) break;
       else {
@@ -135,7 +136,23 @@ void for_(string& src){
                     ++p;
                  }
                  if (ends[p]=='{'){
-                     src += "@for(int " + var + " = " + vs[0] + "; " + var +" @<= " + vs[1] + "; ++" + var + ")" + ends;
+                     int q = p, ctk = 0;
+                     while (q < ends.size()){
+                         if (ends[q]=='{'){
+                             ++ctk;
+                             ++q;
+                         }
+                         else if (ends[q]=='}'){
+                             --ctk;
+                             if (ctk==0) break;
+                             else ++q;
+                         }
+                         else ++q;
+                     }
+                     src += "@if(" + vs[0] + "@<" + vs[1] + "){\n";
+                     src += tab + "@for(int " + var + " = " + vs[0] + "; " + var + " @<= " + vs[1] + "; ++" + var + ")" + ends.substr(0, q+1) + "\n;}\n";
+                     src += "else {\n";
+                     src += tab + "@for(int " + var + " = " + vs[0] + "; " + var + " @>= " + vs[1] + "; --" + var + ")" + ends.substr(0, q+1) + "\n;}" + ends.substr(q+1);
                  }
                  else {
                      while (1){
@@ -147,7 +164,10 @@ void for_(string& src){
                          if (ends[p]!=' ') break;
                          --p;
                      }
-                     src += "@for(int " + var + " = " + vs[0] + "; " + var +" @<= " + vs[1] + "; ++" + var + "){" + ends.substr(0, p+1) + ";}" + ends.substr(p+1);
+                     src += "@if(" + vs[0] + "@<" + vs[1] + "){\n";
+                     src += tab + "@for(int " + var + " = " + vs[0] + "; " + var +" @<= " + vs[1] + "; ++" + var + "){" + ends.substr(0, p+1) + "\n;" + tab + ";}\n;}\n";
+                     src += "else {\n";
+                     src += tab + "@for(int " + var + " = " + vs[0] + "; " + var + " @>= " + vs[1] + "; --" + var + "){" + ends.substr(0, p+1) + tab + ";}\n;}" + ends.substr(p+1);
                  }
              }
              else {
@@ -170,12 +190,15 @@ void for_(string& src){
                          }
                          else ++q;
                      }
-                     src += "@for(int i_ = 0; i_@ < " + to_string(k/2+1) + "; ++i_){\n";
-                     src += tab + "int sec[$" + to_string(k/2+1) + "][$2];\n";
+                     src += "int sec_" + to_string(num) + "_[$" + to_string(k/2+1) + "][$2];\n";
                      for (int k_ = 0; k_ < k/2+1; ++k_){
-                         src += tab + "sec[$" + to_string(k_) + "][$0] = " + vs[k_*2] + ";  sec[$" + to_string(k_) + "][$1] = " + vs[k_*2+1] + "\n";
+                         src += "sec_" + to_string(num) + "_[$" + to_string(k_) + "][$0] = " + vs[k_*2] + ";  sec_" + to_string(num) + "_[$" + to_string(k_) + "][$1] = " + vs[k_*2+1] + "\n";
                      }
-                     src += tab + "@for(int " + var + " = sec[$i_][$0]; " + var + " <= sec[$i_][$1]; ++" + var + ")" + ends.substr(0, q+1) + tab +  ";}" + ends.substr(q+1);
+                     src += "@for(int i_" + to_string(num) + "_ = 0; i_" + to_string(num) + "_ @< " + to_string(k/2+1) + "; ++i_" + to_string(num) + "_){\n";
+                     src += tab + "@if(sec_" + to_string(num) + "_[$i_" + to_string(num) + "_][$0]@<sec_" + to_string(num) + "_[$i_" + to_string(num) + "_][$1]){\n";
+                     src += tab + tab + "@for(int " + var + " = sec_" + to_string(num) + "_[$i_" + to_string(num) + "_][$0]; " + var + " @<= sec_" + to_string(num) + "_[$i_" + to_string(num) + "_][$1]; ++" + var + ")" + ends.substr(0, q+1) + "\n" + tab + ";}\n";
+                     src += tab + "else {\n";
+                     src += tab + tab + "@for(int " + var + " = sec_" + to_string(num) + "_[$i_" + to_string(num) + "_][$0]; " + var + " @>= sec_" + to_string(num) + "_[$i_" + to_string(num) + "_][$1]; --" + var + ")" + ends.substr(0, q+1) + "\n" + tab + ";}\n" + ";}\n" + ends.substr(q+1);
                  }
                  else {
                      while (1){
@@ -187,14 +210,17 @@ void for_(string& src){
                          if (ends[p]!=' ') break;
                          --p;
                      }
-                     src += "@for(int i_ = 0; i_@ < " + to_string(k/2+1) + "; ++i_){\n";
-                     src += tab + "int sec[$" + to_string(k/2+1) + "][$2];\n";
+                     src += "int sec_" + to_string(num) + "_[$" + to_string(k/2+1) + "][$2];\n";
                      for (int k_ = 0; k_ < k/2+1; ++k_){
-                         src += tab + "sec[$" + to_string(k_) + "][$0] = " + vs[k_*2] + ";  sec[$" + to_string(k_) + "][$1] = " + vs[k_*2+1] + "\n";
+                         src += "sec_" + to_string(num) + "_[$" + to_string(k_) + "][$0] = " + vs[k_*2] + ";  sec_" + to_string(num) + "_[$" + to_string(k_) + "][$1] = " + vs[k_*2+1] + "\n";
                      }
-                     src += tab + "@for(int " + var + " = sec[$i_][$0]; " + var + " <= sec[$i_][$1]; ++" + var + "){" + ends.substr(0, p+1) + ";}\n;}" + ends.substr(p+1);
-
+                     src += "@for(int i_" + to_string(num) + "_ = 0; i_" + to_string(num) + "_ @< " + to_string(k/2+1) + "; ++i_" + to_string(num) + "_){\n";
+                     src += tab + "@if(sec_" + to_string(num) + "_[$i_" + to_string(num) + "_][$0]@<sec_" + to_string(num) + "_[$i_" + to_string(num) + "_][$1]){\n";
+                     src += tab + tab + "@for(int " + var + " = sec_" + to_string(num) + "_[$i_" + to_string(num) + "_][$0]; " + var + " @<= sec_" + to_string(num) + "_[$i_" + to_string(num) + "_][$1]; ++" + var + "){" + ends.substr(0, p+1) + ";}\n" + tab + ";}\n";
+                     src += tab + "else {\n";
+                     src += tab + tab + "@for(int " + var + " = sec_" + to_string(num) + "_[$i_" + to_string(num) + "_][$0]; " + var + " @>= sec_" + to_string(num) + "_[$i_" + to_string(num) + "_][$1]; --" + var + "){" + ends.substr(0, p+1) + ";}\n" + tab + ";}\n" + ";}\n" + ends.substr(p+1);
                  }
+                 ++num;
              }
          }
          else {
