@@ -90,10 +90,24 @@ void variable_(string& src){
                     --l;
                 }
                 for (int k = l; k >= 0; --k) type += t[k];
-                if (fele) src = src.substr(0, q+1) + spc + type + " " + name + " = " + ele + ";" + src.substr(p);
-                else src = src.substr(0, q+1) + spc + type + " " + name + ";" + src.substr(p);
-                if (farr) dict[name.substr(0, m)] = type + forarr;
-                else dict[name] = type;
+                if (farr){
+                    dict[name.substr(0, m)] = type + forarr;
+                    int ix = 0;
+                    while (ix < name.size()){
+                        if (name[ix]=='['){
+                            name = name.substr(0, ix+1) + "$" + name.substr(ix+1);
+                            ix += 2;
+                        }
+                        else ++ix;
+                    }
+                    if (fele) src = src.substr(0, q+1) + spc + type + " " + name + " = " + ele + ";" + src.substr(p);
+                    else src = src.substr(0, q+1) + spc + type + " " + name + ";" + src.substr(p);
+                }
+                else {
+                    dict[name] = type;
+                    if (fele) src = src.substr(0, q+1) + spc + type + " " + name + " = " + ele + ";" + src.substr(p);
+                    else src = src.substr(0, q+1) + spc + type + " " + name + ";" + src.substr(p);
+                }
             }
             else {
                 string n = tandn;
@@ -132,11 +146,24 @@ void variable_(string& src){
                     type = "double";
                 }
                 else type = "int";
-
-                if (fele) src = src.substr(0, q+1) + spc + type + " " + name + " = " + ele + ";" + src.substr(p);
-                else src = src.substr(0, q+1) + spc + type + " " + name + ";" + src.substr(p);
-                if (farr) dict[name.substr(0, m)] = type + forarr;
-                else dict[name] = type;
+                if (farr){
+                    dict[name.substr(0, m)] = type + forarr;
+                    int ix = 0;
+                    while (ix < name.size()){
+                        if (name[ix]=='['){
+                            name = name.substr(0, ix+1) + "$" + name.substr(ix+1);
+                            ix += 2;
+                        }
+                        else ++ix;
+                    }
+                    if (fele) src = src.substr(0, q+1) + spc + type + " " + name + " = " + ele + ";" + src.substr(p);
+                    else src = src.substr(0, q+1) + spc + type + " " + name + ";" + src.substr(p);
+                }
+                else {
+                    dict[name] = type;
+                    if (fele) src = src.substr(0, q+1) + spc + type + " " + name + " = " + ele + ";" + src.substr(p);
+                    else src = src.substr(0, q+1) + spc + type + " " + name + ";" + src.substr(p);
+                }
             }
         }
     }
