@@ -5,17 +5,8 @@ void size_(string& src);
 void last_(string& src);
 
 void kstr_(string& src){
-    str_(src);
     size_(src);
     last_(src);
-}
-
-void str_(string& src){
-    int idx;
-    while (1){
-        if ((idx=find(src, "kstr"))<0) break;
-        src = src.substr(0, idx) + "string" + src.substr(idx+4);
-    }
 }
 
 void size_(string& src){
