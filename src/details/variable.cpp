@@ -4,6 +4,7 @@ void variable_(string& src){
     int i = 1;
     while (i++ < src.size()-1){
         if (src[i-1]!='@' && src[i]=='<' && src[i+1]=='<'){
+            int idx = i;
             int p = i+2, q = i-1;
             while (1){
                 if (src[p]!=' ') break;
@@ -90,23 +91,77 @@ void variable_(string& src){
                     --l;
                 }
                 for (int k = l; k >= 0; --k) type += t[k];
-                if (farr){
-                    dict[name.substr(0, m)] = type + forarr;
-                    int ix = 0;
-                    while (ix < name.size()){
-                        if (name[ix]=='['){
-                            name = name.substr(0, ix+1) + "$" + name.substr(ix+1);
-                            ix += 2;
-                        }
-                        else ++ix;
+                if (type.substr(0, 7)=="kluster"){
+                    vector<string> v;
+                    string tmp;
+                    int k = 7;
+                    while (1){
+                        if (type[k]!=' ') break;
+                        ++k;
                     }
-                    if (fele) src = src.substr(0, q+1) + spc + type + " " + name + " = " + ele + ";" + src.substr(p);
-                    else src = src.substr(0, q+1) + spc + type + " " + name + ";" + src.substr(p);
+                    int cntk = 0;
+                    while (1){
+                        if (type[k]=='<'){
+                            ++cntk;
+                            ++k;
+                        }
+                        else if (type[k]=='>'){
+                            --cntk;
+                            if (cntk==0){
+                                v.push_back(tmp);
+                                break;
+                            }
+                            else {
+                                tmp += type[k];
+                                ++k;
+                            }
+                        }
+                        else if (type[k]==' '){
+                            ++k;
+                        }
+                        else if (type[k]==','){
+                            v.push_back(tmp);
+                            tmp = "";
+                            ++k;
+                        }
+                        else {
+                            tmp += type[k];
+                            ++k;
+                        }
+                    }
+                    string ends = src.substr(p);
+                    src = src.substr(0, src.find("kluster"));
+                    src += "vector@<";
+                    for (int i_ = 0; i_ < v.size()-1; ++i_) src += "pair@<";
+                    src += v[0];
+                    for (int i_ = 1; i_ < v.size(); ++i_) src += ", " + v[i_] + ">";
+                    src += "> " + name + ";" + ends;
+                    string dicttype = "kluster<";
+                    for (int i_ = 0; i_ < v.size()-1; ++i_){
+                        dicttype += v[i_] + ", ";
+                    }
+                    dicttype += v[v.size()-1] + ">";
+                    dict[name] = dicttype;
                 }
                 else {
-                    dict[name] = type;
-                    if (fele) src = src.substr(0, q+1) + spc + type + " " + name + " = " + ele + ";" + src.substr(p);
-                    else src = src.substr(0, q+1) + spc + type + " " + name + ";" + src.substr(p);
+                    if (farr){
+                        dict[name.substr(0, m)] = type + forarr;
+                        int ix = 0;
+                        while (ix < name.size()){
+                            if (name[ix]=='['){
+                                name = name.substr(0, ix+1) + "$" + name.substr(ix+1);
+                                ix += 2;
+                            }
+                            else ++ix;
+                        }
+                        if (fele) src = src.substr(0, q+1) + spc + type + " " + name + " = " + ele + ";" + src.substr(p);
+                        else src = src.substr(0, q+1) + spc + type + " " + name + ";" + src.substr(p);
+                    }
+                    else {
+                        dict[name] = type;
+                        if (fele) src = src.substr(0, q+1) + spc + type + " " + name + " = " + ele + ";" + src.substr(p);
+                        else src = src.substr(0, q+1) + spc + type + " " + name + ";" + src.substr(p);
+                    }
                 }
             }
             else {
