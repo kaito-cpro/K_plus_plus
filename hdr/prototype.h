@@ -11,6 +11,8 @@ void for_(string& src);
 void if_else_(string& src);
 void variable_(string& src);
 void kstr_(string& src);
+void kluster_(string& src);
+void array_(string& src);
 void original_format_(string& src);
 void shift_index_(string& src);
 void remove_mark_(string& src);
