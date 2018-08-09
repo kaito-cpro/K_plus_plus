@@ -1,15 +1,15 @@
 # K++ (Original Language for Competitive Programming)
 
 **Purpose**  
-  *To accelerate cording process  
+  *To accelerate coding process  
   *To shorten the time for thinking  
   *To reduce bugs  
  
 **How to use**  
-  *Cording in the file "source_a.cpp" in K++ language  
-  *Setting in motion this program in this way  
+  *Typing in the file "source_a.cpp" in K++ language  
+  *Running the K++ transpiler like this
       ->   $make   $./exe/out  
-  *K++ cord will be converted into C++ cord in the file "converted_a.cpp"
+  *K++ code will be converted into C++ code in the file "converted_a.cpp"
   
 **Regulations and Developings**  
   *予約語  
