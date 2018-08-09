@@ -4,9 +4,11 @@ void convert(string& src){
     in_(src);
     out_(src);
     for_(src);
-    kstr_(src);
     variable_(src);
     semicolon_(src);
+    array_(src);
+    kstr_(src);
+    kluster_(src);
     indent_(src);
     if_else_(src);
     original_format_(src);
