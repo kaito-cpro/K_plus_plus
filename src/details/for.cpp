@@ -2,7 +2,6 @@
 
 void for_(string& src){
    int idx;
-   int num = 0;
    while (1){
       if ((idx=find(src, "for("))<0) break;
       else {
@@ -80,52 +79,49 @@ void for_(string& src){
              }
          }
          else if (arr[0]=='('){
+             arr += ')';
              vector<string> vs;
              int j = 1, k = 0;
-             cntk = -1;
+             cntk = 1;
              string sp;
              bool flag = true;
              while (flag){
-                 if (j==arr.size()){
-                     flag = false;
-                     goto LAB; //16行下
-                     break;
-                 }
-                 else if (arr[j]=='('){
+                 if (arr[j]=='('){
                      ++cntk;
-                     if (k%2==0&&cntk==-1);
-                     else sp += arr[j];
+                     sp += arr[j];
                  }
                  else if (arr[j]==')'){
                      --cntk;
-                     if (k%2==1&&cntk==-2);
-                     else sp += arr[j];
-                 }
-                 else if (arr[j]==','){
-                     if ((k%2==0&&cntk==-1)||(k%2==1&&cntk==-2)){
-                         LAB:
+                     if (cntk==0){
                          vs.push_back(sp);
                          sp = "";
                          ++k;
                          ++j;
                          while (1){
-                             if (arr[j]!=' ') break;
-                             ++j;
+                             if (arr[j]==')'){
+                                 flag = false;
+                                 break;
+                             }
+                             else if (arr[j]=='('){
+                                 cntk = 1;
+                                 break;
+                             }
+                             else ++j;
                          }
-                         if (arr[j]==')'){
-                             break;
-                         }
-                         else --j;
                      }
-                     else {
-                         sp += arr[j];
-                     }
+                     else sp += arr[j];
+                 }
+                 else if (arr[j]=='~'){
+                     vs.push_back(sp);
+                     sp = "";
+                     ++k;
                  }
                  else {
                      sp += arr[j];
                  }
                  ++j;
              }
+             arr = arr.substr(0, arr.size()-1);
              --k;
              string ends = src.substr(i);
              src = src.substr(0, idx);
@@ -224,13 +220,19 @@ void for_(string& src){
              }
          }
          else {
+             int pp = arr.size()-1;
+             while (1){
+                 if (arr[pp]!=' ') break;
+                 --pp;
+             }
+             arr = arr.substr(0, pp+1);
              int p = i;
              while (1){
                  if (src[p]!=' ') break;
                  ++p;
              }
              if (src[p]=='{'){
-                 src = src.substr(0, idx) + "@for(int " + var + " = 1; " + var + " @<= sizeof(" + arr + ")/sizeof(" + arr + "[$0]); ++" + var + ")" + src.substr(i);
+                 src = src.substr(0, idx) + "@for(int " + var + " = 1; " + var + " @<= size(" + arr + "); ++" + var + ")" + src.substr(i);
              }
              else {
                  p = i;
@@ -243,7 +245,7 @@ void for_(string& src){
                      if (src[p]!=' ') break;
                      --p;
                  }
-                 src = src.substr(0, idx) + "@for(int " + var + " = 1; " + var +" @<= sizeof(" + arr + ")/sizeof(" + arr + "[$0]); ++" + var + "){" + src.substr(i, p-i+1) + ";}" + src.substr(p+1);
+                 src = src.substr(0, idx) + "@for(int " + var + " = 1; " + var +" @<= size(" + arr + "); ++" + var + "){" + src.substr(i, p-i+1) + ";}" + src.substr(p+1);
              }
 
          }
