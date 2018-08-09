@@ -2,6 +2,7 @@
 #include "../hdr/convert.h"
 #include "../hdr/prototype.h"
 const int MAX = 200;
+int num = 0;  //K++が生成する変数の通し番号
 string tab = "    ";
 map<string, string> dict;
 
