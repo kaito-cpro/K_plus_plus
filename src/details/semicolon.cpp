@@ -8,6 +8,14 @@ void semicolon_(string& src){
             src = src.substr(0, i) + ";" + src.substr(i);
             ++i;
         }
+        else if (src[i]=='{' && src[i-1]!='@'){
+            src = src.substr(0, i+1) + ";" + src.substr(i+1);
+            ++i;
+        }
+        else if (src[i]=='\n'){
+            src = src.substr(0, i) + ";" + src.substr(i);
+            ++i;
+        }
         ++i;
     }
 }
