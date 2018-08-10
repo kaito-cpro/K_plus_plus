@@ -315,27 +315,27 @@ void max_(string& src){
             }
         }
         --k;
-        int j = vs[0].size()-1;
-        int cnts = 0;
-        while (j>=0){
-            if (vs[0][j]!=' ') break;
-            else ++cnts;
-            --j;
-        }
-        vs[0] = vs[0].substr(0, vs[0].size()-cnts);
-        string type = dict[vs[0]];
-        j = 0;
-        while (1){
-            if (type[j]=='[') break;
-            ++j;
-        }
-        type = type.substr(0, j);
-        j = idx-1;
-        while (1){
-            if (src[j]==';' || src[j]=='}') break;
-            --j;
-        }
         if (k==0){
+            int j = vs[0].size()-1;
+            int cnts = 0;
+            while (j>=0){
+                if (vs[0][j]!=' ') break;
+                else ++cnts;
+                --j;
+            }
+            vs[0] = vs[0].substr(0, vs[0].size()-cnts);
+            string type = dict[vs[0]];
+            j = 0;
+            while (1){
+                if (type[j]=='[') break;
+                ++j;
+            }
+            type = type.substr(0, j);
+            j = idx-1;
+            while (1){
+                if (src[j]==';' || src[j]=='}') break;
+                --j;
+            }
             string ins;
             ins += "\n" + type + " mx_" + to_string(num) + "_ = " + vs[0] + "[$0];\n";
             ins += "@for(int i_" + to_string(num+1) + "_ = 0; i_" + to_string(num+1) + "_ @< size(" + vs[0] + "); ++i_" + to_string(num+1) + "_){\n";
@@ -409,27 +409,27 @@ void min_(string& src){
             }
         }
         --k;
-        int j = vs[0].size()-1;
-        int cnts = 0;
-        while (j>=0){
-            if (vs[0][j]!=' ') break;
-            else ++cnts;
-            --j;
-        }
-        vs[0] = vs[0].substr(0, vs[0].size()-cnts);
-        string type = dict[vs[0]];
-        j = 0;
-        while (1){
-            if (type[j]=='[') break;
-            ++j;
-        }
-        type = type.substr(0, j);
-        j = idx-1;
-        while (1){
-            if (src[j]==';' || src[j]=='}') break;
-            --j;
-        }
         if (k==0){
+            int j = vs[0].size()-1;
+            int cnts = 0;
+            while (j>=0){
+                if (vs[0][j]!=' ') break;
+                else ++cnts;
+                --j;
+            }
+            vs[0] = vs[0].substr(0, vs[0].size()-cnts);
+            string type = dict[vs[0]];
+            j = 0;
+            while (1){
+                if (type[j]=='[') break;
+                ++j;
+            }
+            type = type.substr(0, j);
+            j = idx-1;
+            while (1){
+                if (src[j]==';' || src[j]=='}') break;
+                --j;
+            }
             string ins;
             ins += "\n" + type + " mn_" + to_string(num) + "_ = " + vs[0] + "[$0];\n";
             ins += "@for(int i_" + to_string(num+1) + "_ = 0; i_" + to_string(num+1) + "_ @< size(" + vs[0] + "); ++i_" + to_string(num+1) + "_){\n";
