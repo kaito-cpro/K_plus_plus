@@ -1,7 +1,7 @@
 # K++ (Original Language for Competitive Programming)
 
 code/source_d.cpp に機能紹介あり。  
-code/source_a.cpp ~ c_.cpp にサンプルコードあり。  
+code/source_a.cpp ~ c.cpp にサンプルコードあり。  
 
 **Purpose**  
   *To accelerate cording process  
