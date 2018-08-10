@@ -199,7 +199,7 @@ void sort_(string& src){
                             break;
                         }
                     }
-                    int cpnnum = 1;
+                    cpnnum = 1;
                     int pti = 0;
                     string t = dict[name].substr(8);
                     while (1){
