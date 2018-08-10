@@ -17,5 +17,5 @@ void convert(string& src){
     remove_mark_(src);
     //変数管理の表示
     for(auto itr = dict.begin(); itr != dict.end(); ++itr)
-        cout << "key = " << setw(8) << left <<  itr->first << ", val = " << itr->second << endl;
+        cout << "name = " << setw(8) << left <<  itr->first << ", type = " << itr->second << endl;
 }
