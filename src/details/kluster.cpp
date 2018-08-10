@@ -36,7 +36,8 @@ void access_(string& src){
             ++start;
             continue;
         }
-        while (j<=name.size()/2-1){
+        while (j<=(int)name.size()/2-1){
+            cout << j << endl;
             char tp = name[j];
             name[j] = name[name.size()-j-1];
             name[name.size()-j-1] = tp;
