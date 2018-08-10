@@ -53,7 +53,7 @@ void variable_(string& src){
             if (fele){
                 int id = 0;
                 while (id < ele.size()){
-                    if (ele[id]=='}'){
+                    if (ele[id]=='{' || ele[id]=='}'){
                         ele = ele.substr(0, id) + "@" + ele.substr(id);
                         id += 2;
                     }
