@@ -15,7 +15,7 @@ code/source_a.cpp ~ c.cpp にサンプルコードあり。
   *K++ cord will be converted into C++ cord in the file "converted_a.cpp"
   
 **Regulations and Developings**  
-  *予約語  
+  *予約語(アンダーバーで終わってはダメ)  
   *int省略  
   *セミコロン省略  
   *変換拒否表示  -> @で区別  
@@ -27,7 +27,7 @@ code/source_a.cpp ~ c.cpp にサンプルコードあり。
   *扱いやすい新たなデータ構造の模索  
   *複数の出力  
   *out(f(x))->改良済み    
-  *一般的な 1-index化  
+  *一般的な 1-index化<-廃止  
   *人の思考に沿った記法の模索  
   *python配列、ディクショナリ  
   *変数管理dict  
