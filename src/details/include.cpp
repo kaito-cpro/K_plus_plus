@@ -1,7 +1,7 @@
 #include "../../hdr/prototype.h"
 
 void include_(string& src){
-   src = "#include <iostream>\n"
+    src = "#include <iostream>\n"
          "#include <cstdio>\n"
          "#include <cmath>\n"
          "#include <vector>\n"
@@ -21,6 +21,7 @@ void include_(string& src){
          "#include <cstdlib>\n"
          "#include <iomanip>\n"
          "using namespace std;\n\n"
-         "int main(){\n"
-         +src.substr(1)+"}";
+         + pre
+         + "\nint main(){\n"
+         +src.substr(2)+"}";
 }
