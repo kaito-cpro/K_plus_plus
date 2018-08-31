@@ -101,7 +101,8 @@ void in_(string& src){
                      if (j!=i_s) src += ",";
                      src += " " + v[j].second;
                   }
-                  src += ";\ncin";
+                  src += ";\n";
+                  src += "cin";
                   for (int j = i_s; j <= i_e; ++j){
                      src += " >> " + v[j].second;
                   }
@@ -120,11 +121,11 @@ void in_(string& src){
                            src += " " + v[j].second + "[$" + k + "]";
                         }
                         src += ";\n";
-                        src += "@for(int i = 0; i @< " + k + "; ++i) cin";
+                        src += "@for(int i = 0; i @< " + k + "; ++i) {cin";
                         for (int j = i_s; j <= i_e; ++j){
                            src += " >> " + v[j].second + "[$i]";
                         }
-                        src += ";\n";
+                        src += ";};\n";
                         i_s =  i;  i_e = i;
                         break;
                      }
@@ -137,12 +138,12 @@ void in_(string& src){
                            src += " " + v[j].second + "[$" + n + "]" + "[$" + m + "]";
                         }
                         src += ";\n";
-                        src += "@for(int i = 0; i @< " + n + "; ++i){\n";
-                        src += tab + "@for(int j = 0; j @< " + m + "; ++j){\n" + tab + tab + "cin";
+                        src += "@for(int i = 0; i @< " + n + "; ++i){;\n";
+                        src += tab + "@for(int j = 0; j @< " + m + "; ++j){;\n" + tab + tab + "cin";
                         for (int j = i_s; j <= i_e; ++j){
                            src += " >> " + v[j].second + "[$i][$j]";
                         }
-                        src += ";\n" + tab + "}\n}\n";
+                        src += ";\n" + tab + "};\n};\n";
                         i_s =  i;  i_e = i;
                         break;
                      }
