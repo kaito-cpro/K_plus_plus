@@ -23,9 +23,13 @@
 using namespace std;
 
 #define P pair<string, string>
+#define INF 1e9
 extern string tab;
+extern string pre;
+extern int num;  //K++が生成する変数の通し番号
 extern map<string, string> dict;  //typeとnameを管理
 
 int find(string src, string s);
+void WaitTime(int msec);
 
 #endif
