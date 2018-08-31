@@ -62,7 +62,7 @@ void for_(string& src){
                  ++p;
              }
              if (src[p]=='{'){
-                 src = src.substr(0, idx) + "@for(int " + var + " = 1; " + var +" @<= " + ran + "; ++" + var + ")" + src.substr(i);
+                 src = src.substr(0, idx) + "@for(int " + var + " = 0; " + var +" @< " + ran + "; ++" + var + ")" + src.substr(i);
              }
              else {
                  p = i;
@@ -75,7 +75,7 @@ void for_(string& src){
                      if (src[p]!=' ') break;
                      --p;
                  }
-                 src = src.substr(0, idx) + "@for(int " + var + " = 1; " + var +" @<= " + ran + "; ++" + var + "){" + src.substr(i, p-i+1) + ";}" + src.substr(p+1);
+                 src = src.substr(0, idx) + "@for(int " + var + " = 0; " + var +" @< " + ran + "; ++" + var + "){;" + src.substr(i, p-i+1) + ";};" + src.substr(p+1);
              }
          }
          else if (arr[0]=='('){
@@ -145,10 +145,10 @@ void for_(string& src){
                          }
                          else ++q;
                      }
-                     src += "@if(" + vs[0] + "@<" + vs[1] + "){\n";
-                     src += tab + "@for(int " + var + " = " + vs[0] + "; " + var + " @<= " + vs[1] + "; ++" + var + ")" + ends.substr(0, q+1) + "\n;}\n";
-                     src += "else {\n";
-                     src += tab + "@for(int " + var + " = " + vs[0] + "; " + var + " @>= " + vs[1] + "; --" + var + ")" + ends.substr(0, q+1) + "\n;}" + ends.substr(q+1);
+                     src += "@if(" + vs[0] + "@<" + vs[1] + "){;\n";
+                     src += tab + "@for(int " + var + " = " + vs[0] + "; " + var + " @<= " + vs[1] + "; ++" + var + ")" + ends.substr(0, q+1) + "\n;};\n";
+                     src += "else {;\n";
+                     src += tab + "@for(int " + var + " = " + vs[0] + "; " + var + " @>= " + vs[1] + "; --" + var + ")" + ends.substr(0, q+1) + "\n;};" + ends.substr(q+1);
                  }
                  else {
                      while (1){
@@ -160,10 +160,10 @@ void for_(string& src){
                          if (ends[p]!=' ') break;
                          --p;
                      }
-                     src += "@if(" + vs[0] + "@<" + vs[1] + "){\n";
-                     src += tab + "@for(int " + var + " = " + vs[0] + "; " + var +" @<= " + vs[1] + "; ++" + var + "){" + ends.substr(0, p+1) + "\n;" + tab + ";}\n;}\n";
-                     src += "else {\n";
-                     src += tab + "@for(int " + var + " = " + vs[0] + "; " + var + " @>= " + vs[1] + "; --" + var + "){" + ends.substr(0, p+1) + tab + ";}\n;}" + ends.substr(p+1);
+                     src += "@if(" + vs[0] + "@<" + vs[1] + "){;\n";
+                     src += tab + "@for(int " + var + " = " + vs[0] + "; " + var +" @<= " + vs[1] + "; ++" + var + "){;" + ends.substr(0, p+1) + "\n;" + tab + ";};\n;};\n";
+                     src += "else {;\n";
+                     src += tab + "@for(int " + var + " = " + vs[0] + "; " + var + " @>= " + vs[1] + "; --" + var + "){;" + ends.substr(0, p+1) + tab + ";};\n;};" + ends.substr(p+1);
                  }
              }
              else {
@@ -190,11 +190,11 @@ void for_(string& src){
                      for (int k_ = 0; k_ < k/2+1; ++k_){
                          src += "sec_" + to_string(num) + "_[$" + to_string(k_) + "][$0] = " + vs[k_*2] + ";  sec_" + to_string(num) + "_[$" + to_string(k_) + "][$1] = " + vs[k_*2+1] + "\n";
                      }
-                     src += "@for(int i_" + to_string(num) + "_ = 0; i_" + to_string(num) + "_ @< " + to_string(k/2+1) + "; ++i_" + to_string(num) + "_){\n";
-                     src += tab + "@if(sec_" + to_string(num) + "_[$i_" + to_string(num) + "_][$0]@<sec_" + to_string(num) + "_[$i_" + to_string(num) + "_][$1]){\n";
-                     src += tab + tab + "@for(int " + var + " = sec_" + to_string(num) + "_[$i_" + to_string(num) + "_][$0]; " + var + " @<= sec_" + to_string(num) + "_[$i_" + to_string(num) + "_][$1]; ++" + var + ")" + ends.substr(0, q+1) + "\n" + tab + ";}\n";
-                     src += tab + "else {\n";
-                     src += tab + tab + "@for(int " + var + " = sec_" + to_string(num) + "_[$i_" + to_string(num) + "_][$0]; " + var + " @>= sec_" + to_string(num) + "_[$i_" + to_string(num) + "_][$1]; --" + var + ")" + ends.substr(0, q+1) + "\n" + tab + ";}\n" + ";}\n" + ends.substr(q+1);
+                     src += "@for(int i_" + to_string(num) + "_ = 0; i_" + to_string(num) + "_ @< " + to_string(k/2+1) + "; ++i_" + to_string(num) + "_){;\n";
+                     src += tab + "@if(sec_" + to_string(num) + "_[$i_" + to_string(num) + "_][$0]@<sec_" + to_string(num) + "_[$i_" + to_string(num) + "_][$1]){;\n";
+                     src += tab + tab + "@for(int " + var + " = sec_" + to_string(num) + "_[$i_" + to_string(num) + "_][$0]; " + var + " @<= sec_" + to_string(num) + "_[$i_" + to_string(num) + "_][$1]; ++" + var + ")" + ends.substr(0, q+1) + "\n" + tab + ";};\n";
+                     src += tab + "else {;\n";
+                     src += tab + tab + "@for(int " + var + " = sec_" + to_string(num) + "_[$i_" + to_string(num) + "_][$0]; " + var + " @>= sec_" + to_string(num) + "_[$i_" + to_string(num) + "_][$1]; --" + var + ")" + ends.substr(0, q+1) + "\n" + tab + ";};\n" + ";};\n" + ends.substr(q+1);
                  }
                  else {
                      while (1){
@@ -210,11 +210,11 @@ void for_(string& src){
                      for (int k_ = 0; k_ < k/2+1; ++k_){
                          src += "sec_" + to_string(num) + "_[$" + to_string(k_) + "][$0] = " + vs[k_*2] + ";  sec_" + to_string(num) + "_[$" + to_string(k_) + "][$1] = " + vs[k_*2+1] + "\n";
                      }
-                     src += "@for(int i_" + to_string(num) + "_ = 0; i_" + to_string(num) + "_ @< " + to_string(k/2+1) + "; ++i_" + to_string(num) + "_){\n";
-                     src += tab + "@if(sec_" + to_string(num) + "_[$i_" + to_string(num) + "_][$0]@<sec_" + to_string(num) + "_[$i_" + to_string(num) + "_][$1]){\n";
-                     src += tab + tab + "@for(int " + var + " = sec_" + to_string(num) + "_[$i_" + to_string(num) + "_][$0]; " + var + " @<= sec_" + to_string(num) + "_[$i_" + to_string(num) + "_][$1]; ++" + var + "){" + ends.substr(0, p+1) + ";}\n" + tab + ";}\n";
+                     src += "@for(int i_" + to_string(num) + "_ = 0; i_" + to_string(num) + "_ @< " + to_string(k/2+1) + "; ++i_" + to_string(num) + "_){;\n";
+                     src += tab + "@if(sec_" + to_string(num) + "_[$i_" + to_string(num) + "_][$0]@<sec_" + to_string(num) + "_[$i_" + to_string(num) + "_][$1]){;\n";
+                     src += tab + tab + "@for(int " + var + " = sec_" + to_string(num) + "_[$i_" + to_string(num) + "_][$0]; " + var + " @<= sec_" + to_string(num) + "_[$i_" + to_string(num) + "_][$1]; ++" + var + "){;" + ends.substr(0, p+1) + ";}\n" + tab + ";};\n";
                      src += tab + "else {\n";
-                     src += tab + tab + "@for(int " + var + " = sec_" + to_string(num) + "_[$i_" + to_string(num) + "_][$0]; " + var + " @>= sec_" + to_string(num) + "_[$i_" + to_string(num) + "_][$1]; --" + var + "){" + ends.substr(0, p+1) + ";}\n" + tab + ";}\n" + ";}\n" + ends.substr(p+1);
+                     src += tab + tab + "@for(int " + var + " = sec_" + to_string(num) + "_[$i_" + to_string(num) + "_][$0]; " + var + " @>= sec_" + to_string(num) + "_[$i_" + to_string(num) + "_][$1]; --" + var + "){;" + ends.substr(0, p+1) + ";};\n" + tab + ";};\n" + ";};\n" + ends.substr(p+1);
                  }
                  ++num;
              }
@@ -232,7 +232,7 @@ void for_(string& src){
                  ++p;
              }
              if (src[p]=='{'){
-                 src = src.substr(0, idx) + "@for(int " + var + " = 1; " + var + " @<= size(" + arr + "); ++" + var + ")" + src.substr(i);
+                 src = src.substr(0, idx) + "@for(int " + var + " = 0; " + var + " @< size(" + arr + "); ++" + var + ")" + src.substr(i);
              }
              else {
                  p = i;
@@ -245,9 +245,8 @@ void for_(string& src){
                      if (src[p]!=' ') break;
                      --p;
                  }
-                 src = src.substr(0, idx) + "@for(int " + var + " = 1; " + var +" @<= size(" + arr + "); ++" + var + "){" + src.substr(i, p-i+1) + ";}" + src.substr(p+1);
+                 src = src.substr(0, idx) + "@for(int " + var + " = 0; " + var +" @< size(" + arr + "); ++" + var + "){;" + src.substr(i, p-i+1) + ";};" + src.substr(p+1);
              }
-
          }
       }
    }
