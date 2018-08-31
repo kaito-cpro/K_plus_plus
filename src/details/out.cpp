@@ -25,10 +25,20 @@ void out_(string& src){
          bool flg = true;
          while (flg){
             if (src[i]=='('){
-                tp += src[i];
-                ++cntk;
+                if(cntq%2==1){
+                    tp += src[i];
+                }
+                else {
+                    tp += src[i];
+                    ++cntk;
+                }
             }
             else if (src[i]==')'){
+                if(cntq%2==1){
+                    tp += src[i];
+                    ++i;
+                    continue;
+                }
                 --cntk;
                 if (cntk==-1){
                     flg = false;
@@ -39,8 +49,13 @@ void out_(string& src){
                 else tp += src[i];
             }
             else if (src[i]=='"'){
-                tp += src[i];
-                ++cntq;
+                if(src[i]=='\\'){
+                    tp += "\"";
+                }
+                else {
+                    tp += src[i];
+                    ++cntq;
+                }
             }
             else if (src[i]==','){
                 if (cntk==0 && cntq%2==0){
