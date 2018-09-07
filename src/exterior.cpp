@@ -1,4 +1,4 @@
-#include "../hdr/convert.h"
+#include "../hdr/exterior.h"
 
 void exterior(string& src){
     int idx;
