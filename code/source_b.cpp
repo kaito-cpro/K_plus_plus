@@ -1,6 +1,6 @@
 
-//サンプルコード
-//ABC093-A
+/+サンプルコード+/
+/+ABC093-A+/
 
 in(a, b, k)
 kluster<int> klst <<
