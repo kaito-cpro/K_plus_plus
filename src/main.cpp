@@ -42,6 +42,9 @@ int main(){
     char c[MAX];
     while(fgets(c, MAX, fpr) != NULL) src += c;
 
+    fprintf(fpw, "%s", "/*~~~~~~~~~~~~~~~~~ K++ code ~~~~~~~~~~~~~~~~~~~\n");
+    fprintf(fpw, "%s", src.substr(2).c_str());
+    fprintf(fpw, "%s", "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/\n\n");
     exterior(src);
     convert(src);
     fprintf(fpw, "%s", src.c_str());
