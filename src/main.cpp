@@ -1,3 +1,4 @@
+#include "../hdr/comment.h"
 #include "../hdr/common.h"
 #include "../hdr/convert.h"
 #include "../hdr/exterior.h"
@@ -45,6 +46,7 @@ int main(){
     fprintf(fpw, "%s", "/*~~~~~~~~~~~~~~~~~ K++ code ~~~~~~~~~~~~~~~~~~~\n");
     fprintf(fpw, "%s", src.substr(2).c_str());
     fprintf(fpw, "%s", "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/\n\n");
+    comment(src);
     exterior(src);
     convert(src);
     fprintf(fpw, "%s", src.c_str());
