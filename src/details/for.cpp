@@ -188,7 +188,7 @@ void for_(string& src){
                      }
                      src += "int sec_" + to_string(num) + "_[$" + to_string(k/2+1) + "][$2];\n";
                      for (int k_ = 0; k_ < k/2+1; ++k_){
-                         src += "sec_" + to_string(num) + "_[$" + to_string(k_) + "][$0] = " + vs[k_*2] + ";  sec_" + to_string(num) + "_[$" + to_string(k_) + "][$1] = " + vs[k_*2+1] + "\n";
+                         src += "sec_" + to_string(num) + "_[$" + to_string(k_) + "][$0] = " + vs[k_*2] + ";  sec_" + to_string(num) + "_[$" + to_string(k_) + "][$1] = " + vs[k_*2+1] + ";\n";
                      }
                      src += "@for(int i_" + to_string(num) + "_ = 0; i_" + to_string(num) + "_ @< " + to_string(k/2+1) + "; ++i_" + to_string(num) + "_){;\n";
                      src += tab + "@if(sec_" + to_string(num) + "_[$i_" + to_string(num) + "_][$0]@<sec_" + to_string(num) + "_[$i_" + to_string(num) + "_][$1]){;\n";
