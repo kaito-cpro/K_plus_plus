@@ -1,8 +1,11 @@
-out: obj/main.o obj/common.o obj/convert.o obj/exterior.o obj/array.o obj/bracket.o obj/else_process.o obj/for.o obj/in.o obj/include.o obj/indent.o obj/kluster.o obj/original_format.o obj/out.o obj/remove_mark.o obj/semicolon.o obj/string.o obj/variable.o
-		g++ -o exe/out obj/main.o obj/common.o obj/convert.o obj/exterior.o obj/array.o obj/bracket.o obj/else_process.o obj/for.o obj/in.o obj/include.o obj/indent.o obj/kluster.o obj/original_format.o obj/out.o obj/remove_mark.o obj/semicolon.o obj/string.o obj/variable.o
+out: obj/main.o obj/comment.o obj/common.o obj/convert.o obj/exterior.o obj/array.o obj/bracket.o obj/else_process.o obj/for.o obj/in.o obj/include.o obj/indent.o obj/kluster.o obj/original_format.o obj/out.o obj/remove_mark.o obj/semicolon.o obj/string.o obj/variable.o
+		g++ -o exe/out obj/main.o obj/comment.o obj/common.o obj/convert.o obj/exterior.o obj/array.o obj/bracket.o obj/else_process.o obj/for.o obj/in.o obj/include.o obj/indent.o obj/kluster.o obj/original_format.o obj/out.o obj/remove_mark.o obj/semicolon.o obj/string.o obj/variable.o
 
 obj/main.o: src/main.cpp
 	g++ -c src/main.cpp -I hdr -o obj/main.o
+
+obj/comment.o: src/comment.cpp
+	g++ -c src/comment.cpp -I hdr -o obj/comment.o
 
 obj/common.o: src/common.cpp
 	g++ -c src/common.cpp -I hdr -o obj/common.o
@@ -56,7 +59,7 @@ obj/variable.o: src/details/variable.cpp
 	g++ -c src/details/variable.cpp -I hdr -o obj/variable.o
 
 clean:
-	rm -f out obj/main.o obj/common.o obj/convert.o obj/exterior.o obj/array.o obj/bracket.o obj/else_process.o obj/for.o obj/in.o obj/include.o obj/indent.o obj/kluster.o obj/original_format.o obj/out.o obj/remove_mark.o obj/semicolon.o obj/string.o obj/variable.o
+	rm -f out obj/main.o obj/comment.o obj/common.o obj/convert.o obj/exterior.o obj/array.o obj/bracket.o obj/else_process.o obj/for.o obj/in.o obj/include.o obj/indent.o obj/kluster.o obj/original_format.o obj/out.o obj/remove_mark.o obj/semicolon.o obj/string.o obj/variable.o
 a:
 	cat code/converted_a.cpp | clip
 	g++ code/converted_a.cpp
