@@ -1,6 +1,6 @@
 
-//サンプルコード
-//ABC093-A
+/+サンプルコード+/
+/+ABC093-A+/
 
 in(string s)
 kluster<char> klst <<
